@@ -45,6 +45,10 @@ class CitiesRepository implements ICitiesRepository {
   async save(city: City): Promise<City> {
     return this.ormRepository.save(city);
   }
+
+  async delete(city: City): Promise<void> {
+    await this.ormRepository.remove(city);
+  }
 }
 
 export default CitiesRepository;

@@ -20,4 +20,6 @@ citiesRouter.get('/', citiesController.index);
 
 citiesRouter.put('/', upload.single('image'), citiesController.update);
 
+citiesRouter.delete('/:id', citiesController.delete);
+
 export default citiesRouter;

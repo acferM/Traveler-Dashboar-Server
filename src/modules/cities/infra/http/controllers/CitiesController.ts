@@ -1,9 +1,11 @@
-import CreateCityService from '@modules/cities/services/CreateCityService';
-import ListCitiesService from '@modules/cities/services/ListCitiesService';
-import UpdateCityService from '@modules/cities/services/UpdateCityService';
 import { classToClass } from 'class-transformer';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import CreateCityService from '@modules/cities/services/CreateCityService';
+import DeleteCityService from '@modules/cities/services/DeleteCityService';
+import ListCitiesService from '@modules/cities/services/ListCitiesService';
+import UpdateCityService from '@modules/cities/services/UpdateCityService';
 
 class CitiesController {
   async create(request: Request, response: Response): Promise<Response> {
@@ -41,6 +43,16 @@ class CitiesController {
     });
 
     return response.json(classToClass(city));
+  }
+
+  async delete(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const deleteCity = container.resolve(DeleteCityService);
+
+    await deleteCity.execute(id);
+
+    return response.status(204).send();
   }
 }
 

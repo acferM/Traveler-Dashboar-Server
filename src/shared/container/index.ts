@@ -10,6 +10,8 @@ import ICategoriesRepository from '@modules/categories/repositories/ICategoriesR
 import CategoriesRepository from '@modules/categories/infra/typeorm/repositories/CategoriesRepository';
 import ICitiesRepository from '@modules/cities/repositories/ICitiesRepository';
 import CitiesRepository from '@modules/cities/infra/typeorm/repositories/CitiesRepository';
+import IAddressesRepository from '@modules/addresses/repositories/IAddressesRepository';
+import AddressesRepository from '@modules/addresses/infra/typeorm/repositories/AddressesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -24,4 +26,9 @@ container.registerSingleton<ICategoriesRepository>(
 container.registerSingleton<ICitiesRepository>(
   'CitiesRepository',
   CitiesRepository,
+);
+
+container.registerSingleton<IAddressesRepository>(
+  'AddressesRepository',
+  AddressesRepository,
 );

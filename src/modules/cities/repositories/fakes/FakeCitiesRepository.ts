@@ -39,6 +39,12 @@ class FakeCitiesRepository implements ICitiesRepository {
 
     return city;
   }
+
+  async delete(city: City): Promise<void> {
+    const findIndex = this.cities.findIndex(c => c.id === city.id);
+
+    this.cities.splice(findIndex, 1);
+  }
 }
 
 export default FakeCitiesRepository;

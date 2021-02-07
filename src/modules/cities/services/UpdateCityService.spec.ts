@@ -67,4 +67,27 @@ describe('Update City Service', () => {
       }),
     ).rejects.toBeInstanceOf(AppError);
   });
+
+  it('Should not be able to update a city with a already used name', async () => {
+    await fakeCitiesRepository.create({
+      name: 'Test City1',
+      image: 'Test Image',
+      description: 'description',
+    });
+
+    const city = await fakeCitiesRepository.create({
+      name: 'Test City2',
+      image: 'Test Image',
+      description: 'description',
+    });
+
+    await expect(
+      updateCity.execute({
+        id: city.id,
+        name: 'Test City1',
+        description: 'new description',
+        image: undefined,
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });

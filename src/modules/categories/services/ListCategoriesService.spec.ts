@@ -11,9 +11,18 @@ describe('List Categories Service', () => {
   });
 
   it('Should be able to list all the categories', async () => {
-    await fakeCategoriesRepository.create('Test Category');
-    await fakeCategoriesRepository.create('Test Category1');
-    await fakeCategoriesRepository.create('Test Category2');
+    await fakeCategoriesRepository.create({
+      name: 'Test Category',
+      icon: 'Test Icon',
+    });
+    await fakeCategoriesRepository.create({
+      name: 'Test Category1',
+      icon: 'Test Icon',
+    });
+    await fakeCategoriesRepository.create({
+      name: 'Test Category2',
+      icon: 'Test Icon',
+    });
 
     const categories = await listCategories.execute();
 

@@ -28,6 +28,12 @@ class UpdateCityService {
       throw new AppError('City does not exists');
     }
 
+    const cityWithUpdatedName = await this.citiesRepository.findByName(name);
+
+    if (cityWithUpdatedName && cityWithUpdatedName.id !== id) {
+      throw new AppError('This name is already in use');
+    }
+
     city.name = name;
     city.description = description;
 
